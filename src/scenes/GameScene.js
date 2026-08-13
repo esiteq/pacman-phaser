@@ -364,8 +364,8 @@ export default class GameScene extends Phaser.Scene {
   // Round start / "READY!" sequence
   // ---------------------------------------------------------------------
 
-  startGameplay(initialStart) {
-    if (initialStart) {
+  startGameplay(initialStart, playMelody = initialStart) {
+    if (playMelody) {
       this.soundManager.play('game_start');
     }
 
@@ -795,7 +795,10 @@ export default class GameScene extends Phaser.Scene {
                         this.remainingDots += 1;
                       }
                     });
-                    this.startGameplay();
+                    // New level: replay the start jingle, but keep the
+                    // shorter (non-initial) "READY!" display duration --
+                    // only the very first level should linger on it.
+                    this.startGameplay(false, true);
                   }, 500);
                 }, 250);
               }, 250);
