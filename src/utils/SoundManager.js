@@ -40,6 +40,12 @@ export default class SoundManager {
     if (this.dotContext.state === 'suspended') {
       this.dotContext.resume();
     }
+
+    if (this.blockedSound) {
+      const sound = this.blockedSound;
+      this.blockedSound = null;
+      this.play(sound);
+    }
   }
 
   /**
@@ -102,7 +108,14 @@ export default class SoundManager {
   play(sound) {
     this.soundEffect = new Audio(`${this.baseUrl}${sound}.${this.fileFormat}`);
     this.soundEffect.volume = this.masterVolume;
-    this.soundEffect.play().catch(() => {});
+
+    // Browsers block Audio.play() before any user gesture on the page
+    // (e.g. the game_start sound, which fires on load). Remember it so
+    // `unlock()` can retry it the moment the player provides that gesture,
+    // instead of the sound silently never playing.
+    this.soundEffect.play().catch(() => {
+      this.blockedSound = sound;
+    });
   }
 
   /**
