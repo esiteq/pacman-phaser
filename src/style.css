@@ -83,3 +83,16 @@ html, body {
 .header-buttons button:active {
   background: rgba(33, 33, 255, 0.5);
 }
+
+.header-buttons .github-link {
+  font-size: 0.7rem;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-buttons .github-link:hover,
+.header-buttons .github-link:focus-visible {
+  color: #ffdf00;
+  text-decoration: underline;
+}

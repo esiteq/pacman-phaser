@@ -13,6 +13,8 @@
   Деталі: `README.md` → "Відомі проблеми", `DEVELOPMENT_LOG.md` (сесія 6).
 
 ### Додано
+- Посилання "GitHub" у верхньому правому куті шапки, поруч із кнопками
+  паузи/звуку → `https://github.com/esiteq/pacman-phaser/`.
 - `public/screenshot.png` + Open Graph/Twitter Card мета-теги в
   `index.html` — превʼю гри тепер показується при шарингу
   `https://esiteq.github.io/pacman-phaser/` у соцмережах/месенджерах.
