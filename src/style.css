@@ -13,14 +13,22 @@ html, body {
   font-family: 'Press Start 2P', monospace, sans-serif;
 }
 
+/* 100% can resolve against the "large" viewport on mobile Safari while the
+   address bar is hidden, letting content extend underneath it once the bar
+   reappears. 100dvh tracks the actual visible viewport instead -- kept as a
+   progressive enhancement since older browsers don't support it. */
+@supports (height: 100dvh) {
+  html, body {
+    height: 100dvh;
+  }
+}
+
 #game-container {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 /* Phaser's Scale.FIT sizes the canvas to fill this element exactly, so its
