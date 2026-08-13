@@ -9,10 +9,31 @@ const MAZE_COLS = 28;
 const MAZE_ROWS = 31;
 const width = scaledTileSize * MAZE_COLS;
 const height = scaledTileSize * (MAZE_ROWS + TOP_UI_ROWS + BOTTOM_UI_ROWS);
+const topUiHeight = scaledTileSize * TOP_UI_ROWS;
+
+// The header (GitHub link + pause/sound) is a plain HTML element, positioned
+// independently of the canvas. Since the canvas is letterboxed/centered by
+// Phaser's Scale.FIT, its on-screen box rarely matches the full browser
+// viewport -- so instead of spanning the whole window, the header is kept in
+// sync with the canvas's actual bounding box on every resize, aligning it
+// horizontally with the maze and vertically centering it within the maze's
+// own top HUD row (the space above the maze border, where "1UP"/"HIGH
+// SCORE" are drawn).
+function syncHeaderToCanvas(game) {
+  const header = document.getElementById('header-buttons');
+  if (!header || !game.canvas) return;
+
+  const rect = game.canvas.getBoundingClientRect();
+  const onScreenScale = rect.height / height;
+
+  header.style.left = `${rect.left}px`;
+  header.style.top = `${rect.top}px`;
+  header.style.width = `${rect.width}px`;
+  header.style.height = `${topUiHeight * onScreenScale}px`;
+}
 
 function boot() {
-  // eslint-disable-next-line no-new
-  new Phaser.Game({
+  const game = new Phaser.Game({
     type: Phaser.AUTO,
     parent: 'game-frame',
     backgroundColor: '#000000',
@@ -32,6 +53,9 @@ function boot() {
     },
     scene: [GameScene],
   });
+
+  game.events.once(Phaser.Core.Events.READY, () => syncHeaderToCanvas(game));
+  game.scale.on(Phaser.Scale.Events.RESIZE, () => syncHeaderToCanvas(game));
 }
 
 const headerPause = document.getElementById('pause-button');

@@ -50,16 +50,16 @@ html, body {
   image-rendering: crisp-edges;
 }
 
+/* left/top/width/height are set from JS (see main.js syncHeaderToCanvas)
+   to match the canvas's actual on-screen box, so the header aligns with
+   the maze instead of spanning the full (possibly letterboxed) window. */
 .header-buttons {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0.75rem 1.25rem;
+  padding: 0 1.25rem;
   color: #fff;
   pointer-events: none;
 }
