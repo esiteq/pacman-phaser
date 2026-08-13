@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  touch-action: none;
+  font-family: 'Press Start 2P', monospace, sans-serif;
+}
+
+#game-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+#game-container canvas {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.header-buttons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+.header-buttons .title {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #ffdf00;
+  text-shadow: 2px 2px 0 #2121ff;
+}
+
+.header-buttons .buttons {
+  display: flex;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+.header-buttons button {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #2121ff;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 0;
+}
+
+.header-buttons button:active {
+  background: rgba(33, 33, 255, 0.5);
+}

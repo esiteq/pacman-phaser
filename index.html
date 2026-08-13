@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Pac-Man (Phaser 3)</title>
+    <meta name="description" content="Класична аркадна Pac-Man, переписана на Phaser 3" />
+    <link rel="icon" type="image/png" href="/assets/graphics/extra_life.png" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="header-buttons" class="header-buttons">
+      <span class="title">PAC-MAN</span>
+      <span class="buttons">
+        <button id="pause-button" title="Пауза (Esc)">
+          <i class="material-icons">pause</i>
+        </button>
+        <button id="sound-button" title="Звук (Q)">
+          <i class="material-icons">volume_up</i>
+        </button>
+      </span>
+    </div>
+    <div id="game-container"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

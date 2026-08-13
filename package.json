@@ -1,0 +1,24 @@
+{
+  "name": "pacman-phaser",
+  "version": "1.0.0",
+  "description": "Pac-Man clone rewritten with Phaser 3 (port of bward2/pacman-js)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "pacman",
+    "phaser"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  }
+}
