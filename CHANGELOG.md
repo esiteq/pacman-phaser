@@ -13,6 +13,9 @@
   Деталі: `README.md` → "Відомі проблеми", `DEVELOPMENT_LOG.md` (сесія 6).
 
 ### Додано
+- `public/screenshot.png` + Open Graph/Twitter Card мета-теги в
+  `index.html` — превʼю гри тепер показується при шарингу
+  `https://esiteq.github.io/pacman-phaser/` у соцмережах/месенджерах.
 - `TECHNICAL_DESCRIPTION.md` — детальний технічний опис архітектури.
 - `CLAUDE.md` — інструкції для роботи з кодовою базою через Claude Code.
 - `CHANGELOG.md`, `DEVELOPMENT_LOG.md` — цей файл і журнал сесій розробки.
