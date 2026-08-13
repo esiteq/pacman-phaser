@@ -14,14 +14,19 @@ function boot() {
   // eslint-disable-next-line no-new
   new Phaser.Game({
     type: Phaser.AUTO,
-    parent: 'game-container',
+    parent: 'game-frame',
     backgroundColor: '#000000',
     pixelArt: true,
     antialias: false,
     roundPixels: true,
     scale: {
       mode: Phaser.Scale.FIT,
-      autoCenter: Phaser.Scale.CENTER_BOTH,
+      // Centering is handled by the flexbox rules on #game-container in
+      // style.css. Phaser's own CENTER_BOTH also nudges the canvas via
+      // margin-left/margin-top -- combined with flex's own centering, the
+      // two offsets stack and push the canvas off-center, so autoCentering
+      // is left to CSS only.
+      autoCenter: Phaser.Scale.NO_CENTER,
       width,
       height,
     },

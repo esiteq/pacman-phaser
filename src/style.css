@@ -23,6 +23,19 @@ html, body {
   height: 100%;
 }
 
+/* Phaser's Scale.FIT sizes the canvas to fill this element exactly, so its
+   size (not padding on #game-container, which Phaser's bounding-rect-based
+   sizing would ignore) is what reserves the breathing room around the game
+   -- guarantees a visible margin on every side instead of the canvas
+   touching the viewport edge in whichever dimension is aspect-ratio-bound. */
+#game-frame {
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #game-container canvas {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
