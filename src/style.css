@@ -50,16 +50,21 @@ html, body {
   image-rendering: crisp-edges;
 }
 
-/* left/top/width/height are set from JS (see main.js syncHeaderToCanvas)
-   to match the canvas's actual on-screen box, so the header aligns with
-   the maze instead of spanning the full (possibly letterboxed) window. */
+/* left/top/width are set from JS (see main.js syncHeaderToCanvas) to match
+   the canvas's actual on-screen box, so the header aligns with the maze
+   instead of spanning the full (possibly letterboxed) window. `top` marks
+   the target vertical center (the HUD text's center, not the element's own
+   top edge) -- translateY(-50%) shifts the header up by half of whatever
+   its own rendered height turns out to be, so it's centered on that point
+   regardless of its content's height. */
 .header-buttons {
   position: fixed;
+  transform: translateY(-50%);
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 1.25rem;
+  padding: 0.4rem 1.25rem;
   color: #fff;
   pointer-events: none;
 }

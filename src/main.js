@@ -9,16 +9,23 @@ const MAZE_COLS = 28;
 const MAZE_ROWS = 31;
 const width = scaledTileSize * MAZE_COLS;
 const height = scaledTileSize * (MAZE_ROWS + TOP_UI_ROWS + BOTTOM_UI_ROWS);
-const topUiHeight = scaledTileSize * TOP_UI_ROWS;
+
+// Vertical center (in scaledTileSize units) of the "1UP"/"HIGH SCORE" HUD
+// text block drawn in GameScene.buildHud() -- label at y=0.5*s, value at
+// y=1.3*s, ~0.45*s tall, so the block spans roughly [0.5s, 1.75s]. This is
+// NOT the center of the full TOP_UI_ROWS (3 tiles) band: that band has
+// empty space below the text as breathing room before the maze border, so
+// centering against the whole band would visibly sit the header lower than
+// the HUD text itself.
+const HUD_TEXT_CENTER = 1.125;
 
 // The header (GitHub link + pause/sound) is a plain HTML element, positioned
 // independently of the canvas. Since the canvas is letterboxed/centered by
 // Phaser's Scale.FIT, its on-screen box rarely matches the full browser
 // viewport -- so instead of spanning the whole window, the header is kept in
-// sync with the canvas's actual bounding box on every resize, aligning it
-// horizontally with the maze and vertically centering it within the maze's
-// own top HUD row (the space above the maze border, where "1UP"/"HIGH
-// SCORE" are drawn).
+// sync with the canvas's actual bounding box on every resize: aligned
+// horizontally with the maze, and vertically centered (via CSS
+// translateY(-50%), see style.css) on the "1UP"/"HIGH SCORE" text.
 function syncHeaderToCanvas(game) {
   const header = document.getElementById('header-buttons');
   if (!header || !game.canvas) return;
@@ -27,9 +34,8 @@ function syncHeaderToCanvas(game) {
   const onScreenScale = rect.height / height;
 
   header.style.left = `${rect.left}px`;
-  header.style.top = `${rect.top}px`;
   header.style.width = `${rect.width}px`;
-  header.style.height = `${topUiHeight * onScreenScale}px`;
+  header.style.top = `${rect.top + (HUD_TEXT_CENTER * scaledTileSize * onScreenScale)}px`;
 }
 
 function boot() {
